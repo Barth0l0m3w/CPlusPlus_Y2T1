@@ -4,15 +4,22 @@
 #include "spriteObject.hpp"
 #include "sceneHandler.hpp"
 #include "GameObject.hpp"
+#include "Button.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(400, 400), "SFML with Scenes!");
+    sf::Font font;
+    font.loadFromFile("fonds/SuperPlants.ttf");
+
     Scene scene1("scene01");
 
     SpriteObject sprite1("soldierSprite", "Images/head.png");
     sprite1.setPosition(sf::Vector2f(70.0f, 70.0f));
     sprite1.setScale(sf::Vector2f(5.0f, 5.0f));
     scene1.addGameObject(sprite1);
+
+    Button test("click me", font, "Images/head.png");
+
 
     Scene scene2("scene02");
 
@@ -21,11 +28,10 @@ int main() {
     sprite2.setScale(sf::Vector2f(5.0f, 5.0f));
     scene2.addGameObject(sprite2);
 
-    SpriteObject sprite3("soldierSprite", "Images/small.png");
+    /*SpriteObject sprite3("soldierSprite", "Images/small.png");
     sprite3.setPosition(sf::Vector2f(70.0f, 70.0f));
     sprite3.setScale(sf::Vector2f(1.0f, 1.0f));
-    sprite2.AddChildren(sprite3);
-
+    sprite2.AddChildren(sprite3);*/
 
     SceneHandler handler;
     handler.addScene(scene1);
@@ -40,12 +46,12 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::KeyReleased) {
-                if(event.key.code == sf::Keyboard::R) {
+                /*if (event.key.code == sf::Keyboard::R) {
                     sprite2.RemoveChildren(sprite3);
-                }
+                }*/
 
-                if(event.key.code == sf::Keyboard::A) {
-                    if(counter == 0) {
+                if (event.key.code == sf::Keyboard::A) {
+                    if (counter == 0) {
                         handler.stackScene("scene02");
                         counter++;
                     } else {
@@ -54,7 +60,15 @@ int main() {
                     }
                 }
             }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (test.contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
+                    test.onClick();
+                }
+            }
         }
+
+
         window.clear();
         handler.update();
         handler.render(window);
