@@ -1,13 +1,19 @@
 #include "Button.h"
+#include "sceneHandler.hpp"
 #include <iostream>
 
-Button::Button(const std::string &text, const sf::Font &font, const std::string &spritePath) : GameObject(text) {
+Button::Button(const std::string &text, const std::string &fontPath, const std::string &spritePath) : GameObject(text) {
 
-    buttonText.setFont(font);
     buttonText.setString(text);
     buttonText.setCharacterSize(50);
     buttonText.setFillColor(sf::Color::White);
     buttonText.setPosition(0,0);
+
+    sf::Font font1;
+    if(!font.loadFromFile(fontPath)){
+        std::cout<<"couldn't load font\n";
+    }
+    this->buttonText.setFont(font);
 
     texture.loadFromFile(spritePath);
     this->buttonSprite.setTexture(texture);

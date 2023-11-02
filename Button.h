@@ -15,7 +15,7 @@ private:
     bool isClicked;
 
 public:
-    Button(const std::string &text, const sf::Font &font, const std::string& buttonSprite);
+    Button(const std::string &text, const std::string &font, const std::string& buttonSprite);
 
     void update() override;
 

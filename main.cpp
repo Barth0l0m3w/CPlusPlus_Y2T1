@@ -8,8 +8,11 @@
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(400, 400), "SFML with Scenes!");
-    sf::Font font;
-    font.loadFromFile("fonds/SuperPlants.ttf");
+
+
+    //sf::Font font;
+    //font.loadFromFile("fonds/SuperPlants.ttf");
+
 
     Scene scene1("scene01");
 
@@ -18,8 +21,8 @@ int main() {
     sprite1.setScale(sf::Vector2f(5.0f, 5.0f));
     scene1.addGameObject(sprite1);
 
-    Button test("click me", font, "Images/head.png");
-
+    Button test("click me", "fonds/SuperPlants.ttf", "Images/head.png");
+    scene1.addGameObject(test);
 
     Scene scene2("scene02");
 
@@ -38,6 +41,7 @@ int main() {
     handler.addScene(scene2);
 
 
+
     int counter = 0;
     while (window.isOpen()) {
         sf::Event event;
@@ -51,6 +55,19 @@ int main() {
                 }*/
 
                 if (event.key.code == sf::Keyboard::A) {
+                    /*if (counter == 0) {
+                        handler.stackScene("scene02");
+                        counter++;
+                    } else {
+                        handler.popScene();
+                        counter--;
+                    }*/
+                }
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (test.contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
+                    test.onClick();
                     if (counter == 0) {
                         handler.stackScene("scene02");
                         counter++;
@@ -58,12 +75,6 @@ int main() {
                         handler.popScene();
                         counter--;
                     }
-                }
-            }
-
-            if (event.type == sf::Event::MouseButtonPressed) {
-                if (test.contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
-                    test.onClick();
                 }
             }
         }
