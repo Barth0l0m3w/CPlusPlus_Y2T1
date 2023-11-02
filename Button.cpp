@@ -2,12 +2,11 @@
 #include "sceneHandler.hpp"
 #include <iostream>
 
-Button::Button(const std::string &text, const std::string &fontPath, const std::string &spritePath) : GameObject(text) {
+Button::Button(const std::string &text, const std::string &fontPath/*, const std::string &spritePath*/) : GameObject(text) {
 
     buttonText.setString(text);
     buttonText.setCharacterSize(50);
     buttonText.setFillColor(sf::Color::White);
-    buttonText.setPosition(0,0);
 
     sf::Font font1;
     if(!font.loadFromFile(fontPath)){
@@ -15,8 +14,8 @@ Button::Button(const std::string &text, const std::string &fontPath, const std::
     }
     this->buttonText.setFont(font);
 
-    texture.loadFromFile(spritePath);
-    this->buttonSprite.setTexture(texture);
+    /*texture.loadFromFile(spritePath);
+    this->buttonSprite.setTexture(texture);*/
 }
 
 void Button::update() {
@@ -24,7 +23,13 @@ void Button::update() {
 }
 
 bool Button::contains(const sf::Vector2f &point) {
-    return buttonSprite.getGlobalBounds().contains(point);
+    return buttonText.getGlobalBounds().contains(point);
+
+}
+
+void Button::setPosition(sf::Vector2f position) {
+    //buttonSprite.setPosition(position);
+    buttonText.setPosition(position);
 }
 
 void Button::onClick() {

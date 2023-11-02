@@ -15,11 +15,13 @@ private:
     bool isClicked;
 
 public:
-    Button(const std::string &text, const std::string &font, const std::string& buttonSprite);
+    Button(const std::string &text, const std::string &font/*, const std::string& buttonSprite*/);
 
     void update() override;
 
     bool contains(const sf::Vector2f &point);
+
+    void setPosition(sf::Vector2f position);
 
     void onClick();
 
