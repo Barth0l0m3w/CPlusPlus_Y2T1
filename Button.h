@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "gameObject.hpp"
+#include "Game.h"
 
 
 class Button : public GameObject {
@@ -12,14 +13,19 @@ private:
     sf::Texture texture;
     sf::Font font;
 
-    bool isClicked;
+    int buttonID;
+
+    Game &game;
 
 public:
-    Button(const std::string &text, const std::string &font, const std::string& buttonSprite);
+
+    Button(const std::string &text, const std::string &font, int buttonID, Game &game);
 
     void update() override;
 
-    bool contains(const sf::Vector2f &point);
+    bool contains();
+
+    void setPosition(sf::Vector2f position);
 
     void onClick();
 
