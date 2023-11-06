@@ -11,7 +11,10 @@ add_executable(week6 main.cpp
         spriteObject.cpp
         Button.cpp
         Button.h
-        Button.h)
+        Button.h
+        Game.cpp
+        Game.h
+)
 
 
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)

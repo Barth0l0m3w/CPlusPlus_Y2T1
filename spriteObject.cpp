@@ -29,6 +29,7 @@ void SpriteObject::setPosition(sf::Vector2f position) {
     sprite.setPosition(position);
 }
 
+
 void SpriteObject::setScale(sf::Vector2f scale) {
     sprite.setScale(scale);
 }
