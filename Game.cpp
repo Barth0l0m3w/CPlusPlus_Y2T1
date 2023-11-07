@@ -13,21 +13,17 @@ void Game::Start() {
 
     Scene scene1("scene01");
 
-    SpriteObject sprite1("soldierSprite", "Images/head.png");
+    /*SpriteObject sprite1("soldierSprite", "Images/head.png");
     sprite1.setPosition(sf::Vector2f(70.0f, 70.0f));
     sprite1.setScale(sf::Vector2f(5.0f, 5.0f));
-    scene1.addGameObject(sprite1);
+    scene1.addGameObject(sprite1);*/
 
-    Button test("click me", "fonds/SuperPlants.ttf", 1, *this);
-    test.setPosition(sf::Vector2f(40.0f, 20.0f));
+    Button test("click me", "fonds/SuperPlants.ttf", 2, *this);
+    test.setPosition(sf::Vector2f(50.0f, 50.0f));
     scene1.addGameObject(test);
 
     Scene scene2("scene02");
 
-    SpriteObject sprite2("soldierSprite", "Images/head_hurt.png");
-    sprite2.setPosition(sf::Vector2f(70.0f, 70.0f));
-    sprite2.setScale(sf::Vector2f(5.0f, 5.0f));
-    scene2.addGameObject(sprite2);
 
     sceneHandler = new SceneHandler();
     sceneHandler->addScene(scene1);

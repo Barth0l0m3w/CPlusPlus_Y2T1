@@ -49,7 +49,12 @@ void Button::onClick() {
             game.SwitchScene();
             break;
         case 2:
-            std::cout << "case 2\n";
+            std::cout << "closing application\n";
+            game.window->close();
+            break;
+        case 3:
+            std::cout << "delete data\n";
+            //put in method to delete a file.
             break;
         default:
             std::cout << "nothing implemented\n";
