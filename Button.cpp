@@ -3,12 +3,21 @@
 #include "sceneHandler.hpp"
 #include <iostream>
 #include "Game.h"
+#include "character.hpp"
 
 Button::Button(const std::string &text, const std::string &fontPath, int buttonID, Game &game) : GameObject(text),
                                                                                                  game(game) {
     buttonText.setString(text);
     buttonText.setCharacterSize(50);
     buttonText.setFillColor(sf::Color::White);
+
+/*    enum class ButtonBehaviour {
+        sceneSwitching,
+        closeApp,
+        deleteData,
+        attack,
+        heal,
+    };*/
 
     sf::Font font1;
     if (!font.loadFromFile(fontPath)) {
@@ -52,6 +61,12 @@ void Button::onClick() {
         case 3:
             std::cout << "delete data\n";
             //put in method to delete a file.
+            break;
+
+        case 4:
+            std::cout << "attack\n";
+            game.attack();
+            //pointer to character and attack function
             break;
         default:
             std::cout << "nothing implemented\n";

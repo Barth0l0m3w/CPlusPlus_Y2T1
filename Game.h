@@ -7,13 +7,18 @@
 
 class Game {
 
+private:
+
+    bool fightScene = false;
+
 public:
 
-    SceneHandler *sceneHandler;
-    sf::RenderWindow *window;
+    SceneHandler *sceneHandler{};
+    sf::RenderWindow *window{};
 
     void Start();
     void SwitchScene();
+    void attack();
 
 private:
 

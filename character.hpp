@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "character.hpp"
 
 class Character {
     private:

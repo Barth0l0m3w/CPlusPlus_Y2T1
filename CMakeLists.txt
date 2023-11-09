@@ -5,19 +5,17 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(week6 main.cpp
         sceneHandler.hpp
+        sceneHandler.cpp
         gameObject.cpp
         scene.cpp
-        sceneHandler.cpp
+        scene.hpp
         spriteObject.cpp
         Button.cpp
-        Button.h
         Button.h
         Game.cpp
         Game.h
         HighScore.cpp
         HighScore.h
-        HighScore.h
-        character.hpp
         character.hpp
         character.cpp
 )
