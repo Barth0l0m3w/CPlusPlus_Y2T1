@@ -14,6 +14,12 @@ add_executable(week6 main.cpp
         Button.h
         Game.cpp
         Game.h
+        HighScore.cpp
+        HighScore.h
+        HighScore.h
+        character.hpp
+        character.hpp
+        character.cpp
 )
 
 

@@ -18,7 +18,7 @@ void Game::Start() {
     sprite1.setScale(sf::Vector2f(5.0f, 5.0f));
     scene1.addGameObject(sprite1);*/
 
-    Button test("click me", "fonds/SuperPlants.ttf", 2, *this);
+    Button test("click me", "fonds/SuperPlants.ttf", 1, *this);
     test.setPosition(sf::Vector2f(50.0f, 50.0f));
     scene1.addGameObject(test);
 

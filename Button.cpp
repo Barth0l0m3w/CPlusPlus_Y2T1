@@ -6,7 +6,6 @@
 
 Button::Button(const std::string &text, const std::string &fontPath, int buttonID, Game &game) : GameObject(text),
                                                                                                  game(game) {
-
     buttonText.setString(text);
     buttonText.setCharacterSize(50);
     buttonText.setFillColor(sf::Color::White);
@@ -18,7 +17,6 @@ Button::Button(const std::string &text, const std::string &fontPath, int buttonI
     this->buttonText.setFont(font);
 
     this->buttonID = buttonID;
-
 }
 
 void Button::update() {
@@ -39,7 +37,6 @@ bool Button::contains() {
 }
 
 void Button::setPosition(sf::Vector2f position) {
-    //buttonSprite.setPosition(position);
     buttonText.setPosition(position);
 }
 
