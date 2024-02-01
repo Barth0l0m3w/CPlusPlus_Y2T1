@@ -146,3 +146,5 @@ iwyu/
 iwyu_build/
 # fuzzer logs
 fuzz-*.log
+
+*.ninja
