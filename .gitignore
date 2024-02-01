@@ -5,7 +5,6 @@ bins
 gens
 libs
 objs
-cmake-build-debug/
 # Python items
 .coverage*
 .eggs
@@ -130,6 +129,8 @@ bloaty-build/
 .history/
 # Clion artifacts
 cmake-build-debug/
+!cmake-build-debug/fonds/
+!cmake-build-debug/Images/
 # Benchmark outputs
 BenchmarkDotNet.Artifacts/
 # pyenv config
