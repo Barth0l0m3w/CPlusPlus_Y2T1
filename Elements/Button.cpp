@@ -5,19 +5,19 @@
 #include "../Game-Scenes/Game.h"
 #include "character.hpp"
 
-Button::Button(const std::string &text, const std::string &fontPath, int buttonID, Game &game) : GameObject(text),
-                                                                                                 game(game) {
+Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
+        GameObject(text), game(game) {
+
     buttonText.setString(text);
     buttonText.setCharacterSize(50);
     buttonText.setFillColor(sf::Color::White);
-
-
 
     sf::Font font1;
     if (!font.loadFromFile(fontPath)) {
         std::cout << "couldn't load font\n";
     }
     this->buttonText.setFont(font);
+    this->buttonText.setCharacterSize(fontSize);
 
     this->buttonID = buttonID;
 }
@@ -46,7 +46,6 @@ void Button::onClick() {
     switch (buttonID) {
         case 1:
             game.SwitchScene();
-            
             break;
         case 2:
             std::cout << "closing application\n";
@@ -54,7 +53,8 @@ void Button::onClick() {
             break;
         case 3:
             std::cout << "delete data\n";
-            //put in method to delete a file.
+            HighScore::DeleteData();
+            //todo: set String, decide where, this class maybe but does that make sense?
             break;
         case 4:
             std::cout << "attack\n";

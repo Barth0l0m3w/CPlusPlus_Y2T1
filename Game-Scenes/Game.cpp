@@ -22,18 +22,26 @@ void Game::Start() {
 
     Scene scene1("scene01");
 
+    Button start("Start", "fonds/SuperPlants.ttf", 50, 1, *this);
+    start.setPosition(sf::Vector2f(1100.0f, 30.0f));
+    scene1.addGameObject(start);
+
+    Button quit("Quit", "fonds/SuperPlants.ttf", 40, 2, *this);
+    quit.setPosition(sf::Vector2f(1160.0f, 100.0f));
+    scene1.addGameObject(quit);
+
+    Button RemoveData("Erase High-scores", "fonds/SuperPlants.ttf", 30, 1, *this);
+    RemoveData.setPosition(sf::Vector2f(950.0f, 650.0f));
+    scene1.addGameObject(RemoveData);
+
+
+    Scene scene2("scene02");
+
     Character character("Dude", "images/head.png", 10, 2, 2);
     SpriteObject characterAvatar("soldierSprite", character.getSpriteFile());
     characterAvatar.setPosition(sf::Vector2f(135.0f, 90.0f));
     characterAvatar.setScale(sf::Vector2f(2.5f, 2.5f));
-    scene1.addGameObject(characterAvatar);
-
-    Button test("click me", "fonds/SuperPlants.ttf", 1, *this);
-    test.setPosition(sf::Vector2f(50.0f, 50.0f));
-    scene1.addGameObject(test);
-
-
-    Scene scene2("scene02");
+    scene2.addGameObject(characterAvatar);
 
     sceneHandler = new SceneHandler();
     sceneHandler->addScene(scene1);

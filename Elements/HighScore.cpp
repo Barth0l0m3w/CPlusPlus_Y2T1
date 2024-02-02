@@ -1,27 +1,32 @@
 #include "HighScore.h"
 
+std::vector<int> HighScore::getHighScore() {
 
-HighScore::~HighScore() {}
-
-void GetData(std::vector<HighScore>& scores){
-
+    std::vector<int> scores;
     std::ifstream inputFile("typed.cmgt");
+    std::string line;
+    int index = 0;
 
-    if(inputFile.is_open()){
-        while(!inputFile.eof()){
+    while (std::getline(inputFile, line)) {
 
-        }
-        inputFile.close();
-    } else {
-        std::cout << "Unable to open file for reading.\n";
+        scores.push_back(std::stoi(line));
+    }
+    std::sort(scores.begin(), scores.end(), std::greater<int>());
+    return scores;
+}
+
+void HighScore::UpdateText(std::vector<int> newHighScore) {
+    std::ofstream inputFile("typed.cmgt");
+    if (newHighScore.size() > 5) {
+        newHighScore.resize(5);
+    }
+    for (int i = 0; i < newHighScore.size(); ++i) {
+        inputFile << std::to_string(newHighScore[i]) + "\n";
     }
 }
 
-void UpdateText(const HighScore& newScore, std::vector<HighScore>& scores){
-    scores.push_back(newScore);
-
-   std::ofstream outputFile("typed.cmgt");
-
-   outputFile.close();
-
+void HighScore:: DeleteData(){
+    std::ofstream file;
+    file.open("typed.cmgt", std::ofstream::out | std::ofstream::trunc); //todo: wtf is happening here
+    file.close();
 }

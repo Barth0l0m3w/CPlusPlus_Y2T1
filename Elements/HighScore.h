@@ -12,19 +12,23 @@
 #include <algorithm>
 
 
-class HighScore { ;
+class HighScore {
 
 private:
 
 public:
 
+    std::vector<int> getHighScore();
+
+    void UpdateText(std::vector<int> newHighScore);
+
+    static void DeleteData();
+
+    HighScore();
+
     ~HighScore();
 
-    void UpdateText();
-    void DeleteData();
-    void Default();
-    void GetData();
-    void render(sf::RenderWindow &window);
+    //void render(sf::RenderWindow &window);
 
 };
 
