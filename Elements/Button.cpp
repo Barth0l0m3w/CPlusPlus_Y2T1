@@ -2,10 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "sceneHandler.hpp"
 #include <iostream>
-#include "Game.h"
+#include "../Game-Scenes/Game.h"
+#include "character.hpp"
 
-Button::Button(const std::string &text, const std::string &fontPath, int buttonID, Game &game) : GameObject(text),
-                                                                                                 game(game) {
+Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
+        GameObject(text), game(game) {
 
     buttonText.setString(text);
     buttonText.setCharacterSize(50);
@@ -16,9 +17,9 @@ Button::Button(const std::string &text, const std::string &fontPath, int buttonI
         std::cout << "couldn't load font\n";
     }
     this->buttonText.setFont(font);
+    this->buttonText.setCharacterSize(fontSize);
 
     this->buttonID = buttonID;
-
 }
 
 void Button::update() {
@@ -29,7 +30,6 @@ void Button::update() {
     }
 }
 
-
 bool Button::contains() {
 
     const sf::Vector2f point =
@@ -39,7 +39,6 @@ bool Button::contains() {
 }
 
 void Button::setPosition(sf::Vector2f position) {
-    //buttonSprite.setPosition(position);
     buttonText.setPosition(position);
 }
 
@@ -54,7 +53,13 @@ void Button::onClick() {
             break;
         case 3:
             std::cout << "delete data\n";
-            //put in method to delete a file.
+            HighScore::DeleteData();
+            //todo: set String, decide where, this class maybe but does that make sense?
+            break;
+        case 4:
+            std::cout << "attack\n";
+            game.attack();
+            //pointer to character and attack function
             break;
         default:
             std::cout << "nothing implemented\n";

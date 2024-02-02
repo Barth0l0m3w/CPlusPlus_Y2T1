@@ -2,15 +2,15 @@
 
 #include <map>
 #include <stack>
-#include "scene.hpp"
+#include "../Game-Scenes/scene.hpp"
 
 class SceneHandler {
 private:
     std::map<std::string, Scene *> scenes;
     std::stack<Scene *> scenesStack;
+
 public:
     SceneHandler();
-
     ~SceneHandler();
 
 public:

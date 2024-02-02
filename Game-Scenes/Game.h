@@ -2,18 +2,23 @@
 #ifndef WEEK6_GAME_H
 #define WEEK6_GAME_H
 
-#include "sceneHandler.hpp"
+#include "../Elements/sceneHandler.hpp"
 
 
 class Game {
 
+private:
+
+    bool fightScene = false;
+
 public:
 
-    SceneHandler *sceneHandler;
-    sf::RenderWindow *window;
+    SceneHandler *sceneHandler{};
+    sf::RenderWindow *window{};
 
     void Start();
     void SwitchScene();
+    void attack();
 
 private:
 

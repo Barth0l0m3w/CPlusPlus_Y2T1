@@ -1,7 +1,6 @@
 #include "sceneHandler.hpp"
 
 SceneHandler::SceneHandler() { }
-
 SceneHandler::~SceneHandler() { }
 
 void SceneHandler::render(sf::RenderWindow& window) const {

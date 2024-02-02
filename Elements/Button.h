@@ -3,7 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "gameObject.hpp"
-#include "Game.h"
+#include "character.hpp"
+#include "../Game-Scenes/Game.h"
+#include "HighScore.h"
 
 
 class Button : public GameObject {
@@ -19,7 +21,7 @@ private:
 
 public:
 
-    Button(const std::string &text, const std::string &font, int buttonID, Game &game);
+    Button(const std::string &text, const std::string &font,unsigned int fontSize,  int buttonID, Game &game);
 
     void update() override;
 
