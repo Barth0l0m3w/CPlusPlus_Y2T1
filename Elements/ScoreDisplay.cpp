@@ -40,7 +40,7 @@ void ScoreDisplay::EraseData() {
 }
 
 void ScoreDisplay::render(sf::RenderWindow &window) {
-    window.draw(this->scoreText);
+    window.draw(scoreText);
     for (unsigned int i = 0; i < this->children.size(); i++) {
         this->children[i]->render(window);
     }

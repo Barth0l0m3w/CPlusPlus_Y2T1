@@ -27,7 +27,6 @@ void HighScore::UpdateText(std::vector<int> newHighScore) {
 }
 
 void HighScore:: DeleteData(){
-    std::ofstream file;
-    file.open("typed.cmgt", std::ofstream::out | std::ofstream::trunc); //todo: wtf is happening here
-    file.close();
+    std::ofstream ofs;
+    ofs.open("typed.cmgt", std::ofstream::out | std::ofstream::trunc);
 }

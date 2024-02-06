@@ -40,9 +40,10 @@ void Game::Start() {
     RemoveData.setPosition(sf::Vector2f(950.0f, 650.0f));
     scene1.addGameObject(RemoveData);
 
-    ScoreDisplay scoreDisplay("scoreDisplay", font, 30);
-    scoreDisplay.setPosition(sf::Vector2f(20, 20));
-    scene1.addGameObject(scoreDisplay);
+    scoreDisplay = new
+    ScoreDisplay("scoreDisplay", font, 30);
+    scoreDisplay->setPosition(sf::Vector2f(20, 20));
+    scene1.addGameObject(*scoreDisplay);
 
     Scene scene2("scene02");
 
