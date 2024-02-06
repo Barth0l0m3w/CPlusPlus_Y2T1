@@ -1,4 +1,4 @@
-#include "sceneHandler.hpp"
+#include "SceneHandler.hpp"
 
 SceneHandler::SceneHandler() { }
 SceneHandler::~SceneHandler() { }

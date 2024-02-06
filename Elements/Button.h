@@ -6,7 +6,7 @@
 #include "character.hpp"
 #include "../Game-Scenes/Game.h"
 #include "HighScore.h"
-
+#include "ScoreDisplay.h"
 
 class Button : public GameObject {
 private:

@@ -2,10 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "scene.hpp"
 #include "../Elements/spriteObject.hpp"
-#include "../Elements/sceneHandler.hpp"
+#include "../Elements/SceneHandler.hpp"
 #include "../Elements/gameObject.hpp"
 #include "../Elements/Button.h"
 #include "../Elements/HighScore.h"
+#include "../Elements/ScoreDisplay.h"
 
 void Game::Start() {
 
@@ -16,6 +17,11 @@ void Game::Start() {
         attack,
         heal,
     };*/
+
+    sf::Font font;
+    if (!font.loadFromFile("fonds/SuperPlants.ttf")) {
+        std::cout << "couldn't load font\n";
+    }
 
     window = new sf::RenderWindow;
     window->create(sf::VideoMode(1280, 720), "name"); // change size to the correct one later
@@ -30,10 +36,13 @@ void Game::Start() {
     quit.setPosition(sf::Vector2f(1160.0f, 100.0f));
     scene1.addGameObject(quit);
 
-    Button RemoveData("Erase High-scores", "fonds/SuperPlants.ttf", 30, 1, *this);
+    Button RemoveData("Erase High-scores", "fonds/SuperPlants.ttf", 30, 3, *this);
     RemoveData.setPosition(sf::Vector2f(950.0f, 650.0f));
     scene1.addGameObject(RemoveData);
 
+    ScoreDisplay scoreDisplay("scoreDisplay", font, 30);
+    scoreDisplay.setPosition(sf::Vector2f(20, 20));
+    scene1.addGameObject(scoreDisplay);
 
     Scene scene2("scene02");
 
@@ -73,6 +82,11 @@ void Game::SwitchScene() {
         sceneHandler->popScene();
         counter--;
     }
+}
+
+void Game::EraseData(){
+
+    scoreDisplay->EraseData();
 }
 
 void Game::attack() {

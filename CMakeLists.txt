@@ -4,8 +4,8 @@ project(week6)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(week6 Game-Scenes/main.cpp
-        Elements/sceneHandler.hpp
-        Elements/sceneHandler.cpp
+        Elements/SceneHandler.hpp
+        Elements/SceneHandler.cpp
         Elements/gameObject.cpp
         Game-Scenes/scene.cpp
         Game-Scenes/scene.hpp
@@ -18,6 +18,9 @@ add_executable(week6 Game-Scenes/main.cpp
         Elements/HighScore.h
         Elements/character.hpp
         Elements/character.cpp
+        Elements/ScoreDisplay.cpp
+        Elements/ScoreDisplay.h
+        Elements/ScoreDisplay.h
 )
 
 

@@ -1,9 +1,10 @@
 #include "Button.h"
 #include <SFML/Graphics.hpp>
-#include "sceneHandler.hpp"
+#include "SceneHandler.hpp"
 #include <iostream>
 #include "../Game-Scenes/Game.h"
 #include "character.hpp"
+#include "ScoreDisplay.h"
 
 Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
         GameObject(text), game(game) {
@@ -43,6 +44,7 @@ void Button::setPosition(sf::Vector2f position) {
 }
 
 void Button::onClick() {
+
     switch (buttonID) {
         case 1:
             game.SwitchScene();
@@ -53,8 +55,7 @@ void Button::onClick() {
             break;
         case 3:
             std::cout << "delete data\n";
-            HighScore::DeleteData();
-            //todo: set String, decide where, this class maybe but does that make sense?
+            game.EraseData();
             break;
         case 4:
             std::cout << "attack\n";

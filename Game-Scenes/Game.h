@@ -2,7 +2,8 @@
 #ifndef WEEK6_GAME_H
 #define WEEK6_GAME_H
 
-#include "../Elements/sceneHandler.hpp"
+#include "../Elements/SceneHandler.hpp"
+#include "../Elements/ScoreDisplay.h"
 
 
 class Game {
@@ -14,10 +15,12 @@ private:
 public:
 
     SceneHandler *sceneHandler{};
+    ScoreDisplay *scoreDisplay{};
     sf::RenderWindow *window{};
 
     void Start();
     void SwitchScene();
+    void EraseData();
     void attack();
 
 private:
