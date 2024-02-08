@@ -50,26 +50,26 @@ void Game::Start() {
 
     //Scene scene2("scene02");
 
-    PlayerC player("player", "images/head.png", 5, 5, 5, 5,font, 14);
+    PlayerC player("player", "Images/loki.png", 5, 5, 5, 5,font, 14);
     printf_s("Character 2 Stats:\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
              player.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
     player.HealCharacter(50);
     player.setPosition(sf::Vector2f(250.0f, 250.0f));
     player.setScale(sf::Vector2f(4.0f, 4.0f));
 
-    EnemyC enemy("enemy", "images/head_hurt.png", 5, 5, 5, 5, font, 14);
-    enemy.addFileName("images/head_hurt");
+    EnemyC enemy("enemy", "images/head.png", 5, 5, 5, 5, font, 14);
+    enemy.addFileName("images/cole.png");
     enemy.HealCharacter(50);
     enemy.setPosition(sf::Vector2f(1000.0f, 250.0f));
     enemy.setScale(sf::Vector2f(-4.0f, 4.0f)); //flip so he looks at him
 
-    Button textArea("text", "fonds/SuperPlants.ttf", 20, 5, *this);
-    textArea.setPosition(sf::Vector2f(400, 300));
+    Button textArea("", "fonds/SuperPlants.ttf", 20, 5, *this);
+    textArea.setPosition(sf::Vector2f(400, 600));
 
     Battle battle("battle", player, enemy, textArea);
-    //battle.addGameObject(textArea);
-    //battle.addGameObject(player);
-    //battle.addGameObject(enemy);
+    battle.addGameObject(textArea);
+    battle.addGameObject(player);
+    battle.addGameObject(enemy);
 
 
     sceneHandler = new SceneHandler();
