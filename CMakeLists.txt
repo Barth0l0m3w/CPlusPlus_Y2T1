@@ -16,11 +16,17 @@ add_executable(week6 Game-Scenes/main.cpp
         Game-Scenes/Game.h
         Elements/HighScore.cpp
         Elements/HighScore.h
-        Elements/character.hpp
-        Elements/character.cpp
+        Characters/character.hpp
+        Characters/character.cpp
         Elements/ScoreDisplay.cpp
         Elements/ScoreDisplay.h
         Elements/ScoreDisplay.h
+        Characters/PlayerC.cpp
+        Characters/PlayerC.h
+        Characters/EnemyC.cpp
+        Characters/EnemyC.h
+        Game-Scenes/Battle.cpp
+        Game-Scenes/Battle.h
 )
 
 

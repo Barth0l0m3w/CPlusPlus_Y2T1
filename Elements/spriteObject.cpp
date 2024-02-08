@@ -34,6 +34,15 @@ void SpriteObject::setScale(sf::Vector2f scale) {
     sprite.setScale(scale);
 }
 
+void SpriteObject::SetNewSprite(std::string fileName)
+{
+    sf::Texture t;
+    if (t.loadFromFile(fileName)) {
+        texture = t;
+        sprite.setTexture(texture);
+    }
+}
+
 std::string SpriteObject::getSpriteFile() const {
     return this->spriteFile;
 }

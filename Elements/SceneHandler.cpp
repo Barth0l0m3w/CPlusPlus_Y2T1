@@ -30,3 +30,8 @@ void SceneHandler::popScene(void) {
     this->scenesStack.pop();
 }
 
+Scene* SceneHandler::topScene() const {
+    return scenesStack.top();
+
+}
+

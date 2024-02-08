@@ -4,6 +4,7 @@
 
 #include "../Elements/SceneHandler.hpp"
 #include "../Elements/ScoreDisplay.h"
+#include "../Game-Scenes/Battle.h"
 
 
 class Game {
@@ -14,7 +15,9 @@ private:
 
 public:
 
-    SceneHandler *sceneHandler{};
+    SceneHandler& sceneHandler;
+
+    Battle *battle{};
     ScoreDisplay *scoreDisplay{};
     sf::RenderWindow *window{};
 
@@ -27,6 +30,7 @@ private:
 
     int counter = 0;
 
+    void SwitchScene(SceneHandler &sceneHandler);
 };
 
 

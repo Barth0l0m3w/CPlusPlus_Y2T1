@@ -3,7 +3,7 @@
 #include "SceneHandler.hpp"
 #include <iostream>
 #include "../Game-Scenes/Game.h"
-#include "character.hpp"
+#include "../Characters/character.hpp"
 #include "ScoreDisplay.h"
 
 Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
@@ -45,6 +45,14 @@ void Button::setPosition(sf::Vector2f position) {
 
 void Button::onClick() {
 
+    /*typedef enum{
+        switchScene,
+        close,
+        eraseData,
+        attack,
+        heal,
+    };*/
+
     switch (buttonID) {
         case 1:
             game.SwitchScene();
@@ -54,7 +62,6 @@ void Button::onClick() {
             game.window->close();
             break;
         case 3:
-            std::cout << "delete data\n";
             game.EraseData();
             break;
         case 4:
@@ -71,7 +78,11 @@ void Button::onClick() {
 void Button::render(sf::RenderWindow &window) {
     window.draw(this->buttonSprite);
     window.draw(this->buttonText);
-    for (unsigned int i = 0; i < this->children.size(); i++) {
-        this->children[i]->render(window);
+    for (auto & i : this->children) {
+        i->render(window);
     }
+}
+
+void Button::setText(std::string newText) {
+    buttonText.setString(newText);
 }

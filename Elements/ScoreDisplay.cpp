@@ -36,7 +36,7 @@ void ScoreDisplay::setPosition(sf::Vector2f position) {
 void ScoreDisplay::EraseData() {
 
     HighScore::DeleteData();
-    scoreText.setString("");
+    scoreText.setString("Leaderboard:\n");
 }
 
 void ScoreDisplay::render(sf::RenderWindow &window) {

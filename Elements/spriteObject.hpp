@@ -5,6 +5,9 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 class SpriteObject : public GameObject {
+protected:
+    void SetNewSprite(std::string fileName);
+
 private:
     std::string spriteFile;
     sf::Sprite sprite;
