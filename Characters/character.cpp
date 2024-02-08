@@ -3,7 +3,8 @@
 #include <algorithm>
 
 Character::Character(std::string identifier, std::string spriteFile, int health,
-                     int attack, int defense, int dex, sf::Font &font, unsigned int fontSize) : SpriteObject(identifier, spriteFile) {
+                     int attack, int defense, int dex, sf::Font &font, unsigned int fontSize) : SpriteObject(identifier,
+                                                                                                             spriteFile) {
 
     this->stats["Attack"] = attack;
     this->stats["Defense"] = defense;
@@ -14,6 +15,7 @@ Character::Character(std::string identifier, std::string spriteFile, int health,
     this->healthText = sf::Text();
     this->healthText.setFont(font);
     this->healthText.setFillColor(sf::Color::White);
+
 }
 
 Character::~Character() {
@@ -72,7 +74,7 @@ std::string Character::RandomlyIncreaseStat(int amount) {
             mapIterator->second++;
             feedback += mapIterator->first + "stat increased by one. for a total of: " +
                         std::to_string(mapIterator->second) + "\n";
-        } else{
+        } else {
             amount++;
         }
     }
@@ -94,6 +96,17 @@ const int Character::getStats(std::string key) {
     } else {
         return this->stats[key];
     }
+}
+
+void Character::render(sf::RenderWindow &window) {
+    SpriteObject::render(window);
+    sf::Vector2f pos = getPosition();
+    healthText.setPosition(sf::Vector2f(pos.x, pos.y - 50));
+    healthText.setString("lvl: " + std::to_string(level) + "\n"+
+                         "Health: " + std::to_string(currentHealth) +
+                         "/" + std::to_string(stats["Health"]));
+    window.draw(healthText);
+
 }
 
 

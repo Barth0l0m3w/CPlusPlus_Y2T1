@@ -56,16 +56,18 @@ void Game::Start() {
 
     //all the elements from battle scene
     PlayerC player("player", "Images/loki.png", 5, 5, 5, 5, font, 14);
-    printf_s("Character 2 Stats:\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
+    printf_s("player stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
              player.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
     player.HealCharacter(50);
     player.setPosition(sf::Vector2f(250.0f, 200.0f));
     player.setScale(sf::Vector2f(10.0f, 10.0f));
 
     EnemyC enemy("enemy", "images/cole.png", 5, 5, 5, 5, font, 14);
+    printf_s("enemy stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
+             enemy.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
     enemy.HealCharacter(50);
-    enemy.setPosition(sf::Vector2f(1000.0f, 200.0f));
-    enemy.setScale(sf::Vector2f(-10.0f, 10.0f)); //flip so he looks at him
+    enemy.setPosition(sf::Vector2f(800.0f, 200.0f));
+    enemy.setScale(sf::Vector2f(10.0f, 10.0f));
 
     //enemy images
     enemy.addFileName("images/cole.png");
@@ -84,25 +86,25 @@ void Game::Start() {
     Button attack("Attack", "fonds/SuperPlants.ttf", 40, 4, *this);
     attack.setPosition(sf::Vector2f(30.0f, 500.0f));
 
-    Button heal("heal", "fonds/SuperPlants.ttf", 40, 4, *this);
+    Button heal("heal", "fonds/SuperPlants.ttf", 40, 5, *this);
     heal.setPosition(sf::Vector2f(30.0f, 550.0f));
 
-    Button textArea("", "fonds/Text.otf", 20, 5, *this);
+    Button textArea("", "fonds/Text.otf", 20, 351, *this);
     textArea.setPosition(sf::Vector2f(400, 600));
 
-    Battle battle("battle", player, enemy, textArea);
-    battle.addGameObject(textArea);
-    battle.addGameObject(player);
-    battle.addGameObject(enemy);
-    battle.addGameObject(quit2);
-    battle.addGameObject(menu);
-    battle.addGameObject(attack);
-    battle.addGameObject(heal);
+    battle = new Battle("battle", player, enemy, textArea);
+    battle->addGameObject(textArea);
+    battle->addGameObject(player);
+    battle->addGameObject(enemy);
+    battle->addGameObject(quit2);
+    battle->addGameObject(menu);
+    battle->addGameObject(attack);
+    battle->addGameObject(heal);
 
 
     sceneHandler = new SceneHandler();
     sceneHandler->addScene(scene1);
-    sceneHandler->addScene(battle);
+    sceneHandler->addScene(*battle);
 
 
     while (window->isOpen()) {

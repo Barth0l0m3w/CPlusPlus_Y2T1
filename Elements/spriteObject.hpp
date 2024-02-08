@@ -29,6 +29,8 @@ public:
     void setScale(sf::Vector2f scale);
 
     std::string getSpriteFile() const;
+
+    sf::Vector2f getPosition();
 };
 
 

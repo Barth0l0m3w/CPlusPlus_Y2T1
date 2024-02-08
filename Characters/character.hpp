@@ -50,6 +50,8 @@ public:
     std::string HealCharacter(int amount);
 
     std::string RandomlyIncreaseStat(int amount);
+
+    void render(sf::RenderWindow& window) override;
 };
 
 
