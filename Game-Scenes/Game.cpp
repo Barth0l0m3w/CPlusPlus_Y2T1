@@ -48,7 +48,7 @@ void Game::Start() {
     scoreDisplay->setPosition(sf::Vector2f(20, 20));
     scene1.addGameObject(*scoreDisplay);
 
-    Scene scene2("scene02");
+    //Scene scene2("scene02");
 
     PlayerC player("player", "images/head.png", 5, 5, 5, 5,font, 14);
     printf_s("Character 2 Stats:\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
@@ -65,17 +65,16 @@ void Game::Start() {
 
     Button textArea("text", "fonds/SuperPlants.ttf", 20, 5, *this);
     textArea.setPosition(sf::Vector2f(400, 300));
-    scene2.addGameObject(textArea);
 
-    battle = new Battle("battle", player, enemy, textArea);
-    battle->addGameObject(textArea);
-    battle->addGameObject(player);
-    battle->addGameObject(enemy);
+    Battle battle("battle", player, enemy, textArea);
+    //battle.addGameObject(textArea);
+    //battle.addGameObject(player);
+    //battle.addGameObject(enemy);
 
 
-    sceneHandler = new
-    SceneHandler.addScene(scene1);
-    sceneHandler.addScene(scene2);
+    sceneHandler = new SceneHandler();
+    sceneHandler->addScene(scene1);
+    sceneHandler->addScene(battle);
 
 
     while (window->isOpen()) {
@@ -96,9 +95,8 @@ void Game::Start() {
 void Game::SwitchScene() {
 
     if (counter == 0) {
-        sceneHandler->stackScene("scene02");
+        sceneHandler->stackScene("battle");
         counter++;
-        fightScene = true;
     } else {
         sceneHandler->popScene();
         counter--;
@@ -112,10 +110,5 @@ void Game::EraseData(){
 
 void Game::attack() {
 
-   /* if (fightScene) {
-        switch (turn) {
 
-
-        }
-    }*/
 }
