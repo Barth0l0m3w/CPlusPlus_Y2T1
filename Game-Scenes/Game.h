@@ -1,4 +1,3 @@
-
 #ifndef WEEK6_GAME_H
 #define WEEK6_GAME_H
 
@@ -6,28 +5,29 @@
 #include "../Elements/ScoreDisplay.h"
 #include "../Game-Scenes/Battle.h"
 
-
 class Game {
 
 private:
 
     bool fightScene = false;
+    int counter = 0;
 
 public:
 
     SceneHandler *sceneHandler{};
     ScoreDisplay *scoreDisplay{};
+    Battle *battle{};
     sf::RenderWindow *window{};
 
     void Start();
+
     void SwitchScene();
-    void EraseData();
-    void attack();
 
-private:
+    void EraseData() const;
 
-    int counter = 0;
+    void attack() const;
 
+    void heal() const;
 
 };
 

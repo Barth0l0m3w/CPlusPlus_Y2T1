@@ -69,6 +69,11 @@ void Button::onClick() {
             game.attack();
             //pointer to character and attack function
             break;
+        case 5:
+            std::cout << "heal\n";
+            game.heal();
+            //pointer to character and attack function
+            break;
         default:
             std::cout << "nothing implemented\n";
             break;

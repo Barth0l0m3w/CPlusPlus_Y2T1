@@ -13,7 +13,7 @@ private:
     int finalScore;
 
 public:
-    bool isDead;
+    bool isDead = false;
 
     PlayerC(std::string identifier, std::string spriteFile,
             int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize);

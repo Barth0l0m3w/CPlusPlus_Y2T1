@@ -17,7 +17,8 @@ class HighScore;
 class Battle : public Scene {
 
 private:
-    bool gameOver;
+
+    bool gameOver = false;
     Button &text;
     PlayerC &player;
     EnemyC &enemy;

@@ -26,9 +26,15 @@ void Game::Start() {
         std::cout << "couldn't load font\n";
     }
 
+    sf::Font textF;
+    if (!textF.loadFromFile("fonds/Text.otf")) {
+        std::cout << "couldn't load font\n";
+    }
+
     window = new sf::RenderWindow;
     window->create(sf::VideoMode(1280, 720), "name"); // change size to the correct one later
 
+    //all the elements from main menu
     Scene scene1("scene01");
 
     Button start("Start", "fonds/SuperPlants.ttf", 50, 1, *this);
@@ -43,33 +49,55 @@ void Game::Start() {
     RemoveData.setPosition(sf::Vector2f(950.0f, 650.0f));
     scene1.addGameObject(RemoveData);
 
-    scoreDisplay = new
-    ScoreDisplay("scoreDisplay", font, 30);
+    scoreDisplay = new ScoreDisplay("scoreDisplay", font, 30);
     scoreDisplay->setPosition(sf::Vector2f(20, 20));
     scene1.addGameObject(*scoreDisplay);
 
-    //Scene scene2("scene02");
 
-    PlayerC player("player", "Images/loki.png", 5, 5, 5, 5,font, 14);
+    //all the elements from battle scene
+    PlayerC player("player", "Images/loki.png", 5, 5, 5, 5, font, 14);
     printf_s("Character 2 Stats:\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
              player.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
     player.HealCharacter(50);
-    player.setPosition(sf::Vector2f(250.0f, 250.0f));
-    player.setScale(sf::Vector2f(4.0f, 4.0f));
+    player.setPosition(sf::Vector2f(250.0f, 200.0f));
+    player.setScale(sf::Vector2f(10.0f, 10.0f));
 
-    EnemyC enemy("enemy", "images/head.png", 5, 5, 5, 5, font, 14);
-    enemy.addFileName("images/cole.png");
+    EnemyC enemy("enemy", "images/cole.png", 5, 5, 5, 5, font, 14);
     enemy.HealCharacter(50);
-    enemy.setPosition(sf::Vector2f(1000.0f, 250.0f));
-    enemy.setScale(sf::Vector2f(-4.0f, 4.0f)); //flip so he looks at him
+    enemy.setPosition(sf::Vector2f(1000.0f, 200.0f));
+    enemy.setScale(sf::Vector2f(-10.0f, 10.0f)); //flip so he looks at him
 
-    Button textArea("", "fonds/SuperPlants.ttf", 20, 5, *this);
+    //enemy images
+    enemy.addFileName("images/cole.png");
+    enemy.addFileName("images/doux.png");
+    enemy.addFileName("images/kuro.png");
+    enemy.addFileName("images/mort.png");
+    enemy.addFileName("images/olaf.png");
+    enemy.addFileName("images/sena.png");
+
+    Button quit2("Quit!", "fonds/SuperPlants.ttf", 40, 2, *this);
+    quit2.setPosition(sf::Vector2f(1140.0f, 30.0f));
+
+    Button menu("Menu", "fonds/SuperPlants.ttf", 40, 1, *this);
+    menu.setPosition(sf::Vector2f(30.0f, 30.0f));
+
+    Button attack("Attack", "fonds/SuperPlants.ttf", 40, 4, *this);
+    attack.setPosition(sf::Vector2f(30.0f, 500.0f));
+
+    Button heal("heal", "fonds/SuperPlants.ttf", 40, 4, *this);
+    heal.setPosition(sf::Vector2f(30.0f, 550.0f));
+
+    Button textArea("", "fonds/Text.otf", 20, 5, *this);
     textArea.setPosition(sf::Vector2f(400, 600));
 
     Battle battle("battle", player, enemy, textArea);
     battle.addGameObject(textArea);
     battle.addGameObject(player);
     battle.addGameObject(enemy);
+    battle.addGameObject(quit2);
+    battle.addGameObject(menu);
+    battle.addGameObject(attack);
+    battle.addGameObject(heal);
 
 
     sceneHandler = new SceneHandler();
@@ -103,12 +131,17 @@ void Game::SwitchScene() {
     }
 }
 
-void Game::EraseData(){
+void Game::EraseData() const {
 
     scoreDisplay->EraseData();
 }
 
-void Game::attack() {
+void Game::attack() const {
 
+    battle->attack();
 
+}
+
+void Game::heal() const{
+    battle->heal();
 }
