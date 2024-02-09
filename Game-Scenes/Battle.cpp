@@ -32,8 +32,8 @@ void Battle::update() {
         std::vector<int> scores = highScore.getHighScore();
         int newScore = enemy.getScore();
 
-        feedback = "you have died\n Game over. the score you got is " +
-                   std::to_string(newScore);
+        feedback = "you have died, Game over.\n the score you got is " +
+                   std::to_string(newScore) + "\n";
 
         if (scores.size() > 0) {
             feedback += "highscore: " + std::to_string(scores[0]);
@@ -41,7 +41,7 @@ void Battle::update() {
             feedback += "there has been no new highscore set";
         }
 
-        feedback += "you can now go back to main menu or quit";
+        feedback += "\nyou can now go back to main menu or quit";
 
         if (scores.size() <= 0) {
             scores.push_back(newScore);

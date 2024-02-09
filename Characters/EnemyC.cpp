@@ -5,8 +5,9 @@
 #include "EnemyC.h"
 #include "../Elements/spriteObject.hpp"
 
-EnemyC::EnemyC(std::string identifier, std::string spriteFile, int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize)
+EnemyC::EnemyC(std::string identifier, std::string spriteFile, int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize, int randomStatIncr)
         : Character(identifier, spriteFile, health, attack, defense, dex, font, fontSize) {
+    this->RandomlyIncreaseStat(randomStatIncr);
 
 }
 
@@ -51,6 +52,10 @@ void EnemyC::die() {
 
     int r = rand() % imageFiles.size();
     SetNewSprite(imageFiles[r]);
+
+    //make it more difficult
+    RandomlyIncreaseStat(2);
+
 }
 
 const int EnemyC::getScore() {

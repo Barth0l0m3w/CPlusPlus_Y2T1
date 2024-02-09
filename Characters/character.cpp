@@ -23,12 +23,14 @@ Character::~Character() {
 }
 
 void Character::clearStarts() {
+
     auto mapIterator = stats.begin();
     while (mapIterator != stats.end()) {
         mapIterator->second = 5;
         mapIterator++;
     }
     currentHealth = stats["Health"];
+
 }
 
 const int Character::getStats(std::string key) {
@@ -64,7 +66,7 @@ std::string Character::takeDamage(int damageAmmount, bool isEnemy) {
 
     if (currentHealth <= 0) {
         die();
-        feedback += isEnemy ? "and died\n a new dinosour has taken the stage\n"
+        feedback += isEnemy ? "and died\n a new dinosaur has taken the stage\n"
                             : "and died\n";
     }
     return feedback;

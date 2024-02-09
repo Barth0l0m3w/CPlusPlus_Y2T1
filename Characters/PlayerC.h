@@ -16,7 +16,7 @@ public:
     bool isDead = false;
 
     PlayerC(std::string identifier, std::string spriteFile,
-            int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize);
+            int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize, int randomStatIncr);
 
     ~PlayerC();
 

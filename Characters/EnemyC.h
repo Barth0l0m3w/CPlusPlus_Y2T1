@@ -13,11 +13,11 @@ class EnemyC : public Character {
 
 private:
     std::vector<std::string> imageFiles;
-    int ammountDead;
+    int ammountDead = 0;
 
 public:
 
-    EnemyC(std::string identifier, std::string spriteFile, int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize);
+    EnemyC(std::string identifier, std::string spriteFile, int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize, int randomStatIncr);
 
     ~EnemyC();
 

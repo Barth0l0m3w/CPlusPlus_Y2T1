@@ -11,7 +11,7 @@
 class Character: public SpriteObject {
 
 protected:
-
+    void clearStarts();
     std::map<std::string, int> stats = {
             {"Attack",  0},
             {"Defense", 0},
@@ -22,7 +22,6 @@ protected:
     int currentHealth;
     int level = 1;
 
-    void clearStarts();
 
 private:
 
