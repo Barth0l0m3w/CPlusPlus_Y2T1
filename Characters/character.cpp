@@ -3,8 +3,8 @@
 #include <algorithm>
 
 Character::Character(std::string identifier, std::string spriteFile, int health,
-                     int attack, int defense, int dex, sf::Font &font, unsigned int fontSize) : SpriteObject(identifier,
-                                                                                                             spriteFile) {
+                     int attack, int defense, int dex, sf::Font &font, unsigned int fontSize) :
+                     SpriteObject(identifier, spriteFile) {
 
     this->stats["Attack"] = attack;
     this->stats["Defense"] = defense;
@@ -25,10 +25,18 @@ Character::~Character() {
 void Character::clearStarts() {
     auto mapIterator = stats.begin();
     while (mapIterator != stats.end()) {
-        mapIterator->second = 4;
+        mapIterator->second = 5;
         mapIterator++;
     }
     currentHealth = stats["Health"];
+}
+
+const int Character::getStats(std::string key) {
+    if (stats.find(key) == stats.end()) {
+        return -1;
+    } else {
+        return this->stats[key];
+    }
 }
 
 std::string Character::HealCharacter(int amount) {
@@ -90,19 +98,12 @@ int Character::getHealth() const {
     return currentHealth;
 }
 
-const int Character::getStats(std::string key) {
-    if (stats.find(key) == stats.end()) {
-        return -1;
-    } else {
-        return this->stats[key];
-    }
-}
 
 void Character::render(sf::RenderWindow &window) {
     SpriteObject::render(window);
     sf::Vector2f pos = getPosition();
     healthText.setPosition(sf::Vector2f(pos.x, pos.y - 50));
-    healthText.setString("lvl: " + std::to_string(level) + "\n"+
+    healthText.setString("lvl: " + std::to_string(level) + "\n" +
                          "Health: " + std::to_string(currentHealth) +
                          "/" + std::to_string(stats["Health"]));
     window.draw(healthText);

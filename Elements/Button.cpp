@@ -5,6 +5,7 @@
 #include "../Game-Scenes/Game.h"
 #include "../Characters/character.hpp"
 #include "ScoreDisplay.h"
+#include "windows.h"
 
 Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
         GameObject(text), game(game) {
@@ -24,8 +25,18 @@ Button::Button(const std::string &text, const std::string &fontPath, unsigned in
 }
 
 void Button::update() {
+    int seconds = 0;
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if (contains()) {
+
+        Sleep(1);
+        seconds++;
+
+        if (seconds == 1) {
+            clicked = true;
+        }
+        if (contains() && clicked) {
+            clicked = false;
             this->onClick();
         }
     }
@@ -83,7 +94,7 @@ void Button::onClick() {
 void Button::render(sf::RenderWindow &window) {
     window.draw(this->buttonSprite);
     window.draw(this->buttonText);
-    for (auto & i : this->children) {
+    for (auto &i: this->children) {
         i->render(window);
     }
 }

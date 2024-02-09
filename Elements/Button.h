@@ -16,6 +16,7 @@ private:
     sf::Font font;
 
     int buttonID;
+    bool clicked = false;
 
     Game &game;
 

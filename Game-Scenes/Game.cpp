@@ -55,14 +55,14 @@ void Game::Start() {
 
 
     //all the elements from battle scene
-    PlayerC player("player", "Images/loki.png", 5, 5, 5, 5, font, 14);
+    PlayerC player("player", "Images/loki.png", 6, 6, 2, 6, font, 14);
     printf_s("player stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
              player.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
     player.HealCharacter(50);
     player.setPosition(sf::Vector2f(250.0f, 200.0f));
     player.setScale(sf::Vector2f(10.0f, 10.0f));
 
-    EnemyC enemy("enemy", "images/cole.png", 5, 5, 5, 5, font, 14);
+    EnemyC enemy("enemy", "images/cole.png", 6, 6, 2, 6, font, 14);
     printf_s("enemy stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
              enemy.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
     enemy.HealCharacter(50);
