@@ -5,6 +5,9 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 class SpriteObject : public GameObject {
+protected:
+    void SetNewSprite(std::string fileName);
+
 private:
     std::string spriteFile;
     sf::Sprite sprite;
@@ -26,6 +29,8 @@ public:
     void setScale(sf::Vector2f scale);
 
     std::string getSpriteFile() const;
+
+    sf::Vector2f getPosition();
 };
 
 

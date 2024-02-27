@@ -1,9 +1,10 @@
 #include "Button.h"
 #include <SFML/Graphics.hpp>
-#include "sceneHandler.hpp"
+#include "SceneHandler.hpp"
 #include <iostream>
-#include "../Game-Scenes/Game.h"
-#include "character.hpp"
+#include "windows.h"
+#include <thread>
+
 
 Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
         GameObject(text), game(game) {
@@ -20,12 +21,21 @@ Button::Button(const std::string &text, const std::string &fontPath, unsigned in
     this->buttonText.setCharacterSize(fontSize);
 
     this->buttonID = buttonID;
+
 }
 
 void Button::update() {
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if (contains()) {
+
+        if (contains() && !clicked) {
+            clicked = true;
             this->onClick();
+
+            //library used for the timer. make a delay and set the boolean to be able to press the button on active again after half a second
+            timer.setTimeout([&](){
+                clicked = false;
+            }, 500);
         }
     }
 }
@@ -43,6 +53,8 @@ void Button::setPosition(sf::Vector2f position) {
 }
 
 void Button::onClick() {
+
+
     switch (buttonID) {
         case 1:
             game.SwitchScene();
@@ -52,13 +64,16 @@ void Button::onClick() {
             game.window->close();
             break;
         case 3:
-            std::cout << "delete data\n";
-            HighScore::DeleteData();
-            //todo: set String, decide where, this class maybe but does that make sense?
+            game.EraseData();
             break;
         case 4:
             std::cout << "attack\n";
             game.attack();
+            //pointer to character and attack function
+            break;
+        case 5:
+            std::cout << "heal\n";
+            game.heal();
             //pointer to character and attack function
             break;
         default:
@@ -70,7 +85,11 @@ void Button::onClick() {
 void Button::render(sf::RenderWindow &window) {
     window.draw(this->buttonSprite);
     window.draw(this->buttonText);
-    for (unsigned int i = 0; i < this->children.size(); i++) {
-        this->children[i]->render(window);
+    for (auto &i: this->children) {
+        i->render(window);
     }
+}
+
+void Button::setText(std::string newText) {
+    buttonText.setString(newText);
 }

@@ -5,13 +5,14 @@ std::vector<int> HighScore::getHighScore() {
     std::vector<int> scores;
     std::ifstream inputFile("typed.cmgt");
     std::string line;
-    int index = 0;
+    //int index = 0;
 
     while (std::getline(inputFile, line)) {
 
         scores.push_back(std::stoi(line));
     }
     std::sort(scores.begin(), scores.end(), std::greater<int>());
+    inputFile.close();
     return scores;
 }
 
@@ -26,7 +27,6 @@ void HighScore::UpdateText(std::vector<int> newHighScore) {
 }
 
 void HighScore:: DeleteData(){
-    std::ofstream file;
-    file.open("typed.cmgt", std::ofstream::out | std::ofstream::trunc); //todo: wtf is happening here
-    file.close();
+    std::ofstream ofs;
+    ofs.open("typed.cmgt", std::ofstream::out | std::ofstream::trunc);
 }

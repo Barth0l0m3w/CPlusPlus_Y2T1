@@ -1,4 +1,4 @@
-#include "sceneHandler.hpp"
+#include "SceneHandler.hpp"
 
 SceneHandler::SceneHandler() { }
 SceneHandler::~SceneHandler() { }
@@ -28,5 +28,10 @@ void SceneHandler::stackScene(std::string sceneName) {
 
 void SceneHandler::popScene(void) {
     this->scenesStack.pop();
+}
+
+Scene* SceneHandler::topScene() const {
+    return scenesStack.top();
+
 }
 

@@ -28,10 +28,22 @@ void SpriteObject::render(sf::RenderWindow &window) {
 void SpriteObject::setPosition(sf::Vector2f position) {
     sprite.setPosition(position);
 }
+sf::Vector2f SpriteObject::getPosition() {
+    return sprite.getPosition();
+}
 
 
 void SpriteObject::setScale(sf::Vector2f scale) {
     sprite.setScale(scale);
+}
+
+void SpriteObject::SetNewSprite(std::string fileName)
+{
+    sf::Texture t;
+    if (t.loadFromFile(fileName)) {
+        texture = t;
+        sprite.setTexture(texture);
+    }
 }
 
 std::string SpriteObject::getSpriteFile() const {

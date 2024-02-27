@@ -2,10 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "scene.hpp"
 #include "../Elements/spriteObject.hpp"
-#include "../Elements/sceneHandler.hpp"
+#include "../Elements/SceneHandler.hpp"
 #include "../Elements/gameObject.hpp"
 #include "../Elements/Button.h"
 #include "../Elements/HighScore.h"
+#include "../Elements/ScoreDisplay.h"
+#include "../Game-Scenes/Battle.h"
+#include "../Characters/PlayerC.h"
+#include "../Characters/EnemyC.h"
 
 void Game::Start() {
 
@@ -17,9 +21,20 @@ void Game::Start() {
         heal,
     };*/
 
+    sf::Font font;
+    if (!font.loadFromFile("fonds/SuperPlants.ttf")) {
+        std::cout << "couldn't load font\n";
+    }
+
+    sf::Font textF;
+    if (!textF.loadFromFile("fonds/Text.otf")) {
+        std::cout << "couldn't load font\n";
+    }
+
     window = new sf::RenderWindow;
     window->create(sf::VideoMode(1280, 720), "name"); // change size to the correct one later
 
+    //all the elements from main menu
     Scene scene1("scene01");
 
     Button start("Start", "fonds/SuperPlants.ttf", 50, 1, *this);
@@ -30,22 +45,66 @@ void Game::Start() {
     quit.setPosition(sf::Vector2f(1160.0f, 100.0f));
     scene1.addGameObject(quit);
 
-    Button RemoveData("Erase High-scores", "fonds/SuperPlants.ttf", 30, 1, *this);
+    Button RemoveData("Erase High-scores", "fonds/SuperPlants.ttf", 30, 3, *this);
     RemoveData.setPosition(sf::Vector2f(950.0f, 650.0f));
     scene1.addGameObject(RemoveData);
 
+    scoreDisplay = new ScoreDisplay("scoreDisplay", font, 30);
+    scoreDisplay->setPosition(sf::Vector2f(20, 20));
+    scene1.addGameObject(*scoreDisplay);
 
-    Scene scene2("scene02");
 
-    Character character("Dude", "images/head.png", 10, 2, 2);
-    SpriteObject characterAvatar("soldierSprite", character.getSpriteFile());
-    characterAvatar.setPosition(sf::Vector2f(135.0f, 90.0f));
-    characterAvatar.setScale(sf::Vector2f(2.5f, 2.5f));
-    scene2.addGameObject(characterAvatar);
+    //all the elements from battle scene
+    PlayerC player("player", "Images/loki.png", 6, 8, 2, 6, font, 14, 2);
+    printf_s("player stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
+             player.getStats("Attack"), player.getStats("Defence"), player.getStats("Speed"), player.getHealth());
+    player.HealCharacter(50);
+    player.setPosition(sf::Vector2f(250.0f, 200.0f));
+    player.setScale(sf::Vector2f(10.0f, 10.0f));
+
+    EnemyC enemy("enemy", "images/cole.png", 2, 2, 2, 2, font, 14, 0);
+    printf_s("enemy stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
+             enemy.getStats("Attack"), enemy.getStats("Defence"), enemy.getStats("Speed"), enemy.getHealth());
+    enemy.HealCharacter(50);
+    enemy.setPosition(sf::Vector2f(800.0f, 200.0f));
+    enemy.setScale(sf::Vector2f(10.0f, 10.0f));
+
+    //enemy images
+    enemy.addFileName("images/cole.png");
+    enemy.addFileName("images/doux.png");
+    enemy.addFileName("images/kuro.png");
+    enemy.addFileName("images/mort.png");
+    enemy.addFileName("images/olaf.png");
+    enemy.addFileName("images/sena.png");
+
+    Button quit2("Quit!", "fonds/SuperPlants.ttf", 40, 2, *this);
+    quit2.setPosition(sf::Vector2f(1140.0f, 30.0f));
+
+    Button menu("Menu", "fonds/SuperPlants.ttf", 40, 1, *this);
+    menu.setPosition(sf::Vector2f(30.0f, 30.0f));
+
+    Button attack("Attack", "fonds/SuperPlants.ttf", 40, 4, *this);
+    attack.setPosition(sf::Vector2f(30.0f, 500.0f));
+
+    Button heal("heal", "fonds/SuperPlants.ttf", 40, 5, *this);
+    heal.setPosition(sf::Vector2f(30.0f, 550.0f));
+
+    Button textArea("", "fonds/Text.otf", 20, 351, *this);
+    textArea.setPosition(sf::Vector2f(350, 550));
+
+    battle = new Battle("battle", player, enemy, textArea);
+    battle->addGameObject(textArea);
+    battle->addGameObject(player);
+    battle->addGameObject(enemy);
+    battle->addGameObject(quit2);
+    battle->addGameObject(menu);
+    battle->addGameObject(attack);
+    battle->addGameObject(heal);
+
 
     sceneHandler = new SceneHandler();
     sceneHandler->addScene(scene1);
-    sceneHandler->addScene(scene2);
+    sceneHandler->addScene(*battle);
 
 
     while (window->isOpen()) {
@@ -66,21 +125,25 @@ void Game::Start() {
 void Game::SwitchScene() {
 
     if (counter == 0) {
-        sceneHandler->stackScene("scene02");
+        sceneHandler->stackScene("battle");
         counter++;
-        fightScene = true;
     } else {
         sceneHandler->popScene();
         counter--;
     }
 }
 
-void Game::attack() {
+void Game::EraseData() const {
 
-   /* if (fightScene) {
-        switch (turn) {
+    scoreDisplay->EraseData();
+}
 
+void Game::attack() const {
 
-        }
-    }*/
+    battle->attack();
+
+}
+
+void Game::heal() const{
+    battle->heal();
 }

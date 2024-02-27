@@ -18,9 +18,9 @@ public:
 public:
     void addGameObject(GameObject &object);
 
-    void update();
+    virtual void update();
 
-    void render(sf::RenderWindow &window);
+    virtual void render(sf::RenderWindow &window);
 
     std::string getIdentifier() const;
 };

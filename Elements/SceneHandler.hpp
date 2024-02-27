@@ -23,4 +23,6 @@ public:
     void stackScene(std::string sceneName);
 
     void popScene();
+
+    Scene* topScene() const;
 };
