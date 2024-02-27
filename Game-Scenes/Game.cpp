@@ -62,7 +62,7 @@ void Game::Start() {
     player.setPosition(sf::Vector2f(250.0f, 200.0f));
     player.setScale(sf::Vector2f(10.0f, 10.0f));
 
-    EnemyC enemy("enemy", "images/cole.png", 6, 6, 2, 6, font, 14, 2);
+    EnemyC enemy("enemy", "images/cole.png", 6, 6, 2, 6, font, 14, 0);
     printf_s("enemy stats :\nAttack: %d\nDefence: %d\nSpeed: %d\nHP: %d\n",
              enemy.getStats("Attack"), enemy.getStats("Defence"), enemy.getStats("Speed"), enemy.getHealth());
     enemy.HealCharacter(50);

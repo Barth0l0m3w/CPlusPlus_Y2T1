@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(week6)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 add_executable(week6 Game-Scenes/main.cpp
         Elements/SceneHandler.hpp
@@ -27,6 +27,7 @@ add_executable(week6 Game-Scenes/main.cpp
         Characters/EnemyC.h
         Game-Scenes/Battle.cpp
         Game-Scenes/Battle.h
+        library/timercpp.h
 )
 
 

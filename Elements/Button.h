@@ -7,6 +7,7 @@
 #include "../Game-Scenes/Game.h"
 #include "HighScore.h"
 #include "ScoreDisplay.h"
+#include "../library/timercpp.h"
 
 class Button : public GameObject {
 private:
@@ -17,6 +18,7 @@ private:
 
     int buttonID;
     bool clicked = false;
+    Timer timer;
 
     Game &game;
 

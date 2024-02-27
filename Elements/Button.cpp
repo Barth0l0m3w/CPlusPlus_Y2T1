@@ -2,10 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "SceneHandler.hpp"
 #include <iostream>
-#include "../Game-Scenes/Game.h"
-#include "../Characters/character.hpp"
-#include "ScoreDisplay.h"
 #include "windows.h"
+#include <thread>
+
 
 Button::Button(const std::string &text, const std::string &fontPath, unsigned int fontSize, int buttonID, Game &game) :
         GameObject(text), game(game) {
@@ -25,19 +24,17 @@ Button::Button(const std::string &text, const std::string &fontPath, unsigned in
 }
 
 void Button::update() {
-    int seconds = 0;
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-        Sleep(1);
-        seconds++;
-
-        if (seconds == 1) {
+        if (contains() && !clicked) {
             clicked = true;
-        }
-        if (contains() && clicked) {
-            clicked = false;
             this->onClick();
+
+            //library used for the timer. make a delay and set the boolean to be able to press the button on active again after half a second
+            timer.setTimeout([&](){
+                clicked = false;
+            }, 500);
         }
     }
 }
@@ -55,14 +52,6 @@ void Button::setPosition(sf::Vector2f position) {
 }
 
 void Button::onClick() {
-
-    /*typedef enum{
-        switchScene,
-        close,
-        eraseData,
-        attack,
-        heal,
-    };*/
 
     switch (buttonID) {
         case 1:
