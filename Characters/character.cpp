@@ -58,7 +58,7 @@ std::string Character::takeDamage(int damageAmmount, bool isEnemy) {
         return isEnemy ? "you attacked \nThem enemy took no damage\n "
                          "(your attack: " + std::to_string(damageAmmount) +
                          " enemy defence: " + std::to_string(stats["Defense"]) +
-                         ")\n" : "the enemy attacked\n you took no damage\n";
+                         ")\n" : "the enemy attacked \nyou took no damage\n";
     }
     this->currentHealth -= totalDamage;
     feedback += isEnemy ? "the enemy took " + std::to_string(totalDamage) + " damage\n"
@@ -66,7 +66,7 @@ std::string Character::takeDamage(int damageAmmount, bool isEnemy) {
 
     if (currentHealth <= 0) {
         die();
-        feedback += isEnemy ? "and died\n a new dinosaur has taken the stage\n"
+        feedback += isEnemy ? "and died \na new dinosaur has taken the stage\n"
                             : "and died\n";
     }
     return feedback;

@@ -21,6 +21,7 @@ Button::Button(const std::string &text, const std::string &fontPath, unsigned in
     this->buttonText.setCharacterSize(fontSize);
 
     this->buttonID = buttonID;
+
 }
 
 void Button::update() {
@@ -52,6 +53,7 @@ void Button::setPosition(sf::Vector2f position) {
 }
 
 void Button::onClick() {
+
 
     switch (buttonID) {
         case 1:

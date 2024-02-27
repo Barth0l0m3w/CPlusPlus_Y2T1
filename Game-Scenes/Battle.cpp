@@ -32,7 +32,7 @@ void Battle::update() {
         std::vector<int> scores = highScore.getHighScore();
         int newScore = enemy.getScore();
 
-        feedback = "you have died, Game over.\n the score you got is " +
+        feedback = "you have died, Game over. \nthe score you got is " +
                    std::to_string(newScore) + "\n";
 
         if (scores.size() > 0) {
@@ -53,6 +53,9 @@ void Battle::update() {
                     auto pos = scores.begin();
                     scores.insert(pos, newScore);
                     feedback += "yay, you made the scoreboard";
+                    break;
+                } else if (scores.size() < 5) {
+                    scores.push_back(newScore);
                     break;
                 }
             }
