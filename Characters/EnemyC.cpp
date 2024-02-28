@@ -5,7 +5,8 @@
 #include "EnemyC.h"
 #include "../Elements/spriteObject.hpp"
 
-EnemyC::EnemyC(std::string identifier, std::string spriteFile, int health, int attack, int defense, int dex, sf::Font &font, unsigned int fontSize, int randomStatIncr)
+EnemyC::EnemyC(std::string identifier, std::string spriteFile, int health, int attack, int defense, int dex,
+               sf::Font &font, unsigned int fontSize, int randomStatIncr)
         : Character(identifier, spriteFile, health, attack, defense, dex, font, fontSize) {
     this->RandomlyIncreaseStat(randomStatIncr);
 
@@ -28,7 +29,7 @@ std::string EnemyC::onTurn(Character &c) {
     }
 
     //am i doing any damage?
-    if (this->getStats("Attack") - c.getStats("Defence") > 0) {
+    if (this->getStats("Attack") - c.getStats("Defense") > 0) {
         feedback += c.takeDamage(this->getStats("Attack"));
         return feedback;
     } else {
@@ -43,7 +44,7 @@ void EnemyC::die() {
 
     clearStarts();
 
-    if(ammountDead % 2 == 0){
+    if (ammountDead % 2 == 0) {
         level++;
     }
 
@@ -55,6 +56,9 @@ void EnemyC::die() {
 
     //make it more difficult
     RandomlyIncreaseStat(2);
+
+    printf_s("enemy stats :\nAttack: %d\nDefence: %d\nDex: %d\nHealth: %d\n",
+             getStats("Attack"), getStats("Defense"), getStats("Dex"), getHealth());
 
 }
 
