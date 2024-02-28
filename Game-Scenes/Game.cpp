@@ -10,6 +10,7 @@
 #include "../Game-Scenes/Battle.h"
 #include "../Characters/PlayerC.h"
 #include "../Characters/EnemyC.h"
+#include "../Elements/Animations.h"
 
 void Game::Start() {
 
@@ -36,6 +37,11 @@ void Game::Start() {
 
     //all the elements from main menu
     Scene scene1("scene01");
+
+    Animations animation("animation main dino", "Images/hatch.png");
+    animation.setPosition(sf::Vector2f(200, 200));
+    animation.setScale(sf::Vector2f(10.0f, 10.0f));
+    scene1.addGameObject(animation);
 
     Button start("Start", "fonds/SuperPlants.ttf", 50, 1, *this);
     start.setPosition(sf::Vector2f(1100.0f, 30.0f));

@@ -28,6 +28,8 @@ add_executable(week6 Game-Scenes/main.cpp
         Game-Scenes/Battle.cpp
         Game-Scenes/Battle.h
         library/timercpp.h
+        Elements/Animations.cpp
+        Elements/Animations.h
 )
 
 

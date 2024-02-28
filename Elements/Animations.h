@@ -1,23 +1,24 @@
-#pragma once
+#ifndef WEEK6_ANIMATIONS_H
+#define WEEK6_ANIMATIONS_H
 
 #include "gameObject.hpp"
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-class SpriteObject : public GameObject {
-protected:
-    void SetNewSprite(std::string fileName);
-
+class Animations : public GameObject {
 private:
+
     std::string spriteFile;
-    sf::Sprite sprite;
     sf::Texture texture;
+    sf::Sprite sprite;
+    int f = 0;
+
 public:
-    SpriteObject(std::string identifier, std::string spriteFile);
+    Animations(std::string identifier, std::string spriteFile);
 
-    SpriteObject(const SpriteObject &other);
+    Animations(const Animations &other);
 
-    ~SpriteObject();
+    ~Animations();
 
     void update() override;
 
@@ -27,10 +28,7 @@ public:
 
     void setScale(sf::Vector2f scale);
 
-    std::string getSpriteFile() const;
-
-    sf::Vector2f getPosition();
 };
 
 
-
+#endif //WEEK6_ANIMATIONS_H
