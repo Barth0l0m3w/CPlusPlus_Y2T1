@@ -20,9 +20,7 @@ Animations::~Animations() {}
 void Animations::update() {
 
     f++;
-
-    std::cout << f << std::endl;
-    sprite.setTextureRect({(f / 600 % 4) * 24, 0, 24, 24});
+    sprite.setTextureRect({(f / 1000 % 4) * 24, 0, 24, 24});
 
 }
 

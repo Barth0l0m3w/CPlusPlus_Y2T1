@@ -22,6 +22,7 @@ void Game::Start() {
         heal,
     };*/
 
+
     sf::Font font;
     if (!font.loadFromFile("fonds/SuperPlants.ttf")) {
         std::cout << "couldn't load font\n";
@@ -38,11 +39,6 @@ void Game::Start() {
     //all the elements from main menu
     Scene scene1("scene01");
 
-    Animations animation("animation main dino", "Images/hatch.png");
-    animation.setPosition(sf::Vector2f(200, 200));
-    animation.setScale(sf::Vector2f(10.0f, 10.0f));
-    scene1.addGameObject(animation);
-
     Button start("Start", "fonds/SuperPlants.ttf", 50, 1, *this);
     start.setPosition(sf::Vector2f(1100.0f, 30.0f));
     scene1.addGameObject(start);
@@ -58,6 +54,14 @@ void Game::Start() {
     scoreDisplay = new ScoreDisplay("scoreDisplay", font, 30);
     scoreDisplay->setPosition(sf::Vector2f(20, 20));
     scene1.addGameObject(*scoreDisplay);
+
+    //loading screen
+    Scene scene2("scene02");
+    Animations animation("animation main dino", "Images/hatch.png");
+    animation.setPosition(sf::Vector2f(500, 200));
+    animation.setScale(sf::Vector2f(10.0f, 10.0f));
+    scene2.addGameObject(animation);
+
 
 
     //all the elements from battle scene
@@ -110,6 +114,7 @@ void Game::Start() {
 
     sceneHandler = new SceneHandler();
     sceneHandler->addScene(scene1);
+    sceneHandler->addScene(scene2);
     sceneHandler->addScene(*battle);
 
 
@@ -121,6 +126,8 @@ void Game::Start() {
             }
         }
 
+
+
         window->clear();
         sceneHandler->update();
         sceneHandler->render(*window);
@@ -131,10 +138,17 @@ void Game::Start() {
 void Game::SwitchScene() {
 
     if (counter == 0) {
-        sceneHandler->stackScene("battle");
+        sceneHandler->stackScene("scene02");
+
+
+        timer.setTimeout([&](){
+            sceneHandler->stackScene("battle");
+        }, 2000);
+
+
         counter++;
     } else {
-        sceneHandler->popScene();
+        sceneHandler->stackScene("scene01");
         counter--;
     }
 }
@@ -150,6 +164,6 @@ void Game::attack() const {
 
 }
 
-void Game::heal() const{
+void Game::heal() const {
     battle->heal();
 }

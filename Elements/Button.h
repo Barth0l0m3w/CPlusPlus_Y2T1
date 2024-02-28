@@ -18,6 +18,7 @@ private:
 
     int buttonID;
     bool clicked = false;
+
     Timer timer;
 
     Game &game;
