@@ -13,8 +13,13 @@ private:
     sf::Sprite sprite;
     int f = 0;
 
+    int width;
+    int height;
+    int rows;
+    int collums;
+
 public:
-    Animations(std::string identifier, std::string spriteFile);
+    Animations(std::string identifier, std::string spriteFile, int width, int height, int rows, int collums);
 
     Animations(const Animations &other);
 

@@ -7,8 +7,8 @@
 #include <iostream>
 
 
-Animations::Animations(std::string identifier, std::string spriteFile) :
-        GameObject(identifier), spriteFile(spriteFile) {
+Animations::Animations(std::string identifier, std::string spriteFile, int width, int height, int rows, int collums) :
+        GameObject(identifier), spriteFile(spriteFile), width(width), height(height), rows(rows), collums(collums) {
 
     texture.loadFromFile(spriteFile);
     sprite.setTexture(texture);
@@ -20,7 +20,7 @@ Animations::~Animations() {}
 void Animations::update() {
 
     f++;
-    sprite.setTextureRect({(f / 1000 % 4) * 24, 0, 24, 24});
+    sprite.setTextureRect({(f / 1500 % 4) * (rows * width), (collums * height), width, height});
 
 }
 
