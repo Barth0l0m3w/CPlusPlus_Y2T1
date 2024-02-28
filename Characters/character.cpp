@@ -4,7 +4,7 @@
 
 Character::Character(std::string identifier, std::string spriteFile, int health,
                      int attack, int defense, int dex, sf::Font &font, unsigned int fontSize) :
-                     SpriteObject(identifier, spriteFile) {
+        SpriteObject(identifier, spriteFile) {
 
     this->stats["Attack"] = attack;
     this->stats["Defense"] = defense;
@@ -41,13 +41,8 @@ const int Character::getStats(std::string key) {
     }
 }
 
-std::string Character::HealCharacter(int amount) {
-    if (currentHealth + amount <= stats["Health"]) {
-        currentHealth += amount;
-    } else {
-        currentHealth = stats["Health"];
-    }
-    return "\n You healed yourself\n";
+int Character::getHealth() const {
+    return currentHealth;
 }
 
 std::string Character::takeDamage(int damageAmmount, bool isEnemy) {
@@ -57,12 +52,12 @@ std::string Character::takeDamage(int damageAmmount, bool isEnemy) {
     if (totalDamage <= 0) {
         return isEnemy ? "you attacked \nThem enemy took no damage\n "
                          "(your attack: " + std::to_string(damageAmmount) +
-                         " enemy defence: " + std::to_string(stats["Defense"]) +
+                         " enemy defense: " + std::to_string(stats["Defense"]) +
                          ")\n" : "the enemy attacked \nyou took no damage\n";
     }
     this->currentHealth -= totalDamage;
     feedback += isEnemy ? "the enemy took " + std::to_string(totalDamage) + " damage\n"
-                        : "you took" + std::to_string(totalDamage) + " damage\n";
+                        : "you took " + std::to_string(totalDamage) + " damage\n";
 
     if (currentHealth <= 0) {
         die();
@@ -70,6 +65,26 @@ std::string Character::takeDamage(int damageAmmount, bool isEnemy) {
                             : "and died\n";
     }
     return feedback;
+}
+
+std::string Character::HealCharacter(int amount) {
+    if (currentHealth + amount <= stats["Health"]) {
+        currentHealth += amount;
+    } else {
+        currentHealth = stats["Health"];
+    }
+    return "\n You healed yourself\n";
+}
+
+
+void Character::render(sf::RenderWindow &window) {
+    SpriteObject::render(window);
+    sf::Vector2f pos = getPosition();
+    healthText.setPosition(sf::Vector2f(pos.x, pos.y - 50));
+    healthText.setString("lvl: " + std::to_string(level) + "\n" +
+                         "Health: " + std::to_string(currentHealth) +
+                         "/" + std::to_string(stats["Health"]));
+    window.draw(healthText);
 }
 
 std::string Character::RandomlyIncreaseStat(int amount) {
@@ -96,21 +111,10 @@ void Character::die() {
     //empty because the children will have a different approach
 }
 
-int Character::getHealth() const {
-    return currentHealth;
-}
 
 
-void Character::render(sf::RenderWindow &window) {
-    SpriteObject::render(window);
-    sf::Vector2f pos = getPosition();
-    healthText.setPosition(sf::Vector2f(pos.x, pos.y - 50));
-    healthText.setString("lvl: " + std::to_string(level) + "\n" +
-                         "Health: " + std::to_string(currentHealth) +
-                         "/" + std::to_string(stats["Health"]));
-    window.draw(healthText);
 
-}
+
 
 
 

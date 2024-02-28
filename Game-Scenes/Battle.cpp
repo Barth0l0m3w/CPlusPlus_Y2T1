@@ -41,8 +41,6 @@ void Battle::update() {
             feedback += "there has been no new highscore set";
         }
 
-        feedback += "\nyou can now go back to main menu or quit";
-
         if (scores.size() <= 0) {
             scores.push_back(newScore);
             feedback += "yay, you made the scoreboard";
@@ -60,6 +58,8 @@ void Battle::update() {
                 }
             }
         }
+
+        feedback += "\nyou can now go back to main menu or quit";
 
         highScore.UpdateText(scores);
         printFeedback();
@@ -93,6 +93,8 @@ void Battle::heal() {
         return;
     }
     feedback = "";
+
+    //dex player > enemy == player turn first
     if (player.getStats("Dex") > enemy.getStats("Dex")) {
         feedback += player.HealCharacter(2);
         feedback += enemy.onTurn(player);
