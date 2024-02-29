@@ -2,8 +2,8 @@
 #include "../Elements/Button.h"
 #include "../Characters/PlayerC.h"
 #include "../Characters/EnemyC.h"
-#include "../Characters/character.hpp"
-#include "../Elements/HighScore.h"
+
+#include "../Elements/ScoreDisplay.h"
 
 
 Battle::Battle(std::string identifier, PlayerC &p, EnemyC &e, Button &t)
@@ -32,25 +32,25 @@ void Battle::update() {
         std::vector<int> scores = highScore.getHighScore();
         int newScore = enemy.getScore();
 
-        feedback = "you have died, Game over. \nthe score you got is " +
-                   std::to_string(newScore) + "\n";
+        feedback = "You have died, GAME OVER. \nThe score you got is " +
+                   std::to_string(newScore);
 
         if (scores.size() > 0) {
-            feedback += "highscore: " + std::to_string(scores[0]);
+            feedback += "\nHighscore: " + std::to_string(scores[0]);
         } else {
-            feedback += "there has been no new highscore set";
+            feedback += "\nThere has been no new highscore set";
         }
 
         if (scores.size() <= 0) {
             scores.push_back(newScore);
-            feedback += "yay, you made the scoreboard";
+            feedback += "Yay, you made the scoreboard";
 
         } else {
             for (size_t i = 0; i < scores.size(); ++i) {
                 if (newScore > scores[i]) {
                     auto pos = scores.begin();
                     scores.insert(pos, newScore);
-                    feedback += "yay, you made the scoreboard";
+                    feedback += "\nYay, you made the scoreboard";
                     break;
                 } else if (scores.size() < 5) {
                     scores.push_back(newScore);
@@ -59,9 +59,11 @@ void Battle::update() {
             }
         }
 
-        feedback += "\nyou can now go back to main menu or quit";
+        feedback += "\nGo away now. Nothing here for you to see";
 
         highScore.UpdateText(scores);
+        highScore.getHighScore();
+
         printFeedback();
     }
 }
@@ -104,7 +106,7 @@ void Battle::heal() {
     }
     printFeedback();
 }
-
+/*
 void Battle::nothing() {
     if (gameOver) {
         return;
@@ -113,4 +115,4 @@ void Battle::nothing() {
     feedback += "You snooze, you feel a little refreshed\n";
     feedback += enemy.onTurn(player);
     printFeedback();
-}
+}*/

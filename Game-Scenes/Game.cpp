@@ -2,24 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "scene.hpp"
 #include "../Elements/spriteObject.hpp"
-#include "../Elements/SceneHandler.hpp"
-#include "../Elements/gameObject.hpp"
 #include "../Elements/Button.h"
-#include "../Elements/HighScore.h"
-#include "../Elements/ScoreDisplay.h"
-#include "../Game-Scenes/Battle.h"
 #include "../Characters/PlayerC.h"
 #include "../Characters/EnemyC.h"
+#include "../Elements/Animations.h"
 
 void Game::Start() {
-
-    /*    enum class StateMachine{
-        sceneSwitching,
-        closeApp,
-        deleteData,
-        attack,
-        heal,
-    };*/
 
     sf::Font font;
     if (!font.loadFromFile("fonds/SuperPlants.ttf")) {
@@ -53,6 +41,23 @@ void Game::Start() {
     scoreDisplay->setPosition(sf::Vector2f(20, 20));
     scene1.addGameObject(*scoreDisplay);
 
+    //loading screen
+    Scene scene2("scene02");
+
+    Animations animation1("move dino", "Images/move.png", 24, 24, 1, 0);
+    animation1.setPosition(sf::Vector2f(290, 200));
+    animation1.setScale(sf::Vector2f(10.0f, 10.0f));
+    scene2.addGameObject(animation1);
+
+    Animations animation2("move dino", "Images/crack.png", 24, 24, 1, 0);
+    animation2.setPosition(sf::Vector2f(500, 200));
+    animation2.setScale(sf::Vector2f(10.0f, 10.0f));
+    scene2.addGameObject(animation2);
+
+    Animations animation3("move dino", "Images/hatch.png", 24, 24, 1, 0);
+    animation3.setPosition(sf::Vector2f(700, 200));
+    animation3.setScale(sf::Vector2f(10.0f, 10.0f));
+    scene2.addGameObject(animation3);
 
     //all the elements from battle scene
     PlayerC player("player", "Images/loki.png", 6, 8, 2, 6, font, 14, 2);
@@ -104,6 +109,7 @@ void Game::Start() {
 
     sceneHandler = new SceneHandler();
     sceneHandler->addScene(scene1);
+    sceneHandler->addScene(scene2);
     sceneHandler->addScene(*battle);
 
 
@@ -125,10 +131,15 @@ void Game::Start() {
 void Game::SwitchScene() {
 
     if (counter == 0) {
-        sceneHandler->stackScene("battle");
+        sceneHandler->stackScene("scene02");
+
+        timer.setTimeout([&]() {
+            sceneHandler->stackScene("battle");
+        }, 3000);
+
         counter++;
     } else {
-        sceneHandler->popScene();
+        sceneHandler->stackScene("scene01");
         counter--;
     }
 }
@@ -144,6 +155,6 @@ void Game::attack() const {
 
 }
 
-void Game::heal() const{
+void Game::heal() const {
     battle->heal();
 }

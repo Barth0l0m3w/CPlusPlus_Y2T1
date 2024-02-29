@@ -34,7 +34,7 @@ void Button::update() {
 
             //library used for the timer. make a delay and set the boolean to be able to press the button on active again after half a second
             timer.setTimeout([&](){
-                clicked = false;
+               clicked = false;
             }, 500);
         }
     }

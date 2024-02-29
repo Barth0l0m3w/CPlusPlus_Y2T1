@@ -4,6 +4,7 @@
 #include "../Elements/SceneHandler.hpp"
 #include "../Elements/ScoreDisplay.h"
 #include "../Game-Scenes/Battle.h"
+#include "../library/timercpp.h"
 
 class Game {
 
@@ -11,6 +12,8 @@ private:
 
     bool fightScene = false;
     int counter = 0;
+
+    Timer timer;
 
 public:
 
