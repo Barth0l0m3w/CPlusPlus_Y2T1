@@ -13,12 +13,7 @@ ScoreDisplay::ScoreDisplay(std::string identifier, sf::Font &font, unsigned int 
     this->scoreText.setFont(font);
     this->scoreText.setCharacterSize(fontSize);
 
-    std::string highScoreString = "Leaderboard:\n";
-    for (size_t i = 0; i < highScores.size(); i++) {
-        highScoreString += std::to_string(i + 1) + ". " + std::to_string(highScores[i]) + "\n";
-    }
-    scoreText.setString(highScoreString);
-
+    UpdateScore();
 }
 
 ScoreDisplay::~ScoreDisplay() {
@@ -26,6 +21,16 @@ ScoreDisplay::~ScoreDisplay() {
 }
 
 void ScoreDisplay::update() {
+
+}
+
+void ScoreDisplay::UpdateScore() {
+
+    std::string highScoreString = "Leaderboard:\n";
+    for (size_t i = 0; i < highScores.size(); i++) {
+        highScoreString += std::to_string(i + 1) + ". " + std::to_string(highScores[i]) + "\n";
+    }
+    scoreText.setString(highScoreString);
 
 }
 

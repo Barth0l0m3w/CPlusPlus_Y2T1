@@ -18,7 +18,7 @@ private:
 
 public:
 
-    std::vector<int> getHighScore();
+    static std::vector<int> getHighScore();
 
     void UpdateText(std::vector<int> newHighScore);
 

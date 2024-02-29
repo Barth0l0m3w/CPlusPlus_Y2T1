@@ -34,6 +34,7 @@ public:
 
     void render(sf::RenderWindow &window) override;
 
+    void UpdateScore();
 };
 
 
