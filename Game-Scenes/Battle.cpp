@@ -7,7 +7,7 @@
 
 
 Battle::Battle(std::string identifier, PlayerC &p, EnemyC &e, Button &t)
-        : Scene(identifier), player(p), enemy(e), text(t), highScore(highScore), score(score) {
+        : Scene(identifier), player(p), enemy(e), text(t), highScore(highScore) {
 
 }
 
