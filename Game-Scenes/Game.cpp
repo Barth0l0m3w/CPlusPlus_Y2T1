@@ -60,7 +60,7 @@ void Game::Start() {
     scene2.addGameObject(animation3);
 
     //all the elements from battle scene
-    PlayerC player("player", "Images/loki.png", 6, 8, 2, 6, font, 14, 2);
+    PlayerC player("player", "Images/loki.png", 6, 6, 6, 6, font, 14, 10);
     printf_s("player stats :\nAttack: %d\nDefence: %d\nDex: %d\nHealth: %d\n",
              player.getStats("Attack"), player.getStats("Defense"), player.getStats("Dex"), player.getHealth());
     player.HealCharacter(50);

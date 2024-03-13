@@ -64,6 +64,11 @@ void Battle::update() {
         highScore.UpdateText(scores);
         highScore.getHighScore();
 
+        //todo: update the score display here
+
+
+
+
         printFeedback();
     }
 }

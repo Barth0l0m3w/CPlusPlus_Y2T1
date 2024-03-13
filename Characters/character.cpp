@@ -16,6 +16,8 @@ Character::Character(std::string identifier, std::string spriteFile, int health,
     this->healthText.setFont(font);
     this->healthText.setFillColor(sf::Color::White);
 
+    srand(time(NULL));
+
 }
 
 Character::~Character() {
@@ -90,6 +92,7 @@ void Character::render(sf::RenderWindow &window) {
 std::string Character::RandomlyIncreaseStat(int amount) {
     std::string feedback;
     for (int i = 0; i < amount; i++) {
+
         int outcome = rand() % stats.size();
         auto mapIterator = stats.begin();
         for (size_t j = 0; j < outcome; j++) {

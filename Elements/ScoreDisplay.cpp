@@ -26,6 +26,8 @@ void ScoreDisplay::update() {
 
 void ScoreDisplay::UpdateScore() {
 
+    highScores = highScore.getHighScore();
+
     std::string highScoreString = "Leaderboard:\n";
     for (size_t i = 0; i < highScores.size(); i++) {
         highScoreString += std::to_string(i + 1) + ". " + std::to_string(highScores[i]) + "\n";
