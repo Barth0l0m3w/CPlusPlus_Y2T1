@@ -9,6 +9,8 @@
 
 void Game::Start() {
 
+    srand(time(NULL));
+
     sf::Font font;
     if (!font.loadFromFile("fonds/SuperPlants.ttf")) {
         std::cout << "couldn't load font\n";

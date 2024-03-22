@@ -33,7 +33,10 @@ std::string EnemyC::onTurn(Character &c) {
         feedback += c.takeDamage(this->getStats("Attack"));
         return feedback;
     } else {
-        feedback += "the enemy " + this->RandomlyIncreaseStat(2);
+        //feedback += "the enemy " + this->RandomlyIncreaseStat(1);
+        //todo: find a easy way to make sure the enemy doesnt get overpowered.
+        //without the function the enemy is too weak
+        //now the enemy increases its stats but the player cant so they will be forever losing.
     }
 
     return feedback;

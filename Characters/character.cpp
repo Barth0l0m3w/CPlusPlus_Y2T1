@@ -16,7 +16,7 @@ Character::Character(std::string identifier, std::string spriteFile, int health,
     this->healthText.setFont(font);
     this->healthText.setFillColor(sf::Color::White);
 
-    srand(time(NULL));
+
 
 }
 
